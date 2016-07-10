@@ -1,0 +1,20 @@
+.header {
+	background: $primary-dark;
+	border-bottom: 3px solid darken($primary-dark, 10%);
+	color: #fff;
+	font-family: $display-regular;
+	padding: 8px 0;
+	h1 {
+		font-size: 32px;
+		margin: 0.3em 0;
+	}
+	.featured-animal {
+		border-bottom: solid 3px $highlight;
+		color: $highlight;
+		display: inline-block;
+		font-size: 1.25em;
+		line-height: 0.7;
+		text-transform: uppercase;
+		vertical-align: -1px;
+	}
+}
