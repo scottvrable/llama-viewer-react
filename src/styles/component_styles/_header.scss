@@ -2,7 +2,7 @@
 	background: $primary-dark;
 	border-bottom: 3px solid darken($primary-dark, 10%);
 	color: #fff;
-	font-family: $display-regular;
+	font-family: $display-font;
 	padding: 8px 0;
 	h1 {
 		font-size: 32px;
@@ -16,5 +16,37 @@
 		line-height: 0.7;
 		text-transform: uppercase;
 		vertical-align: -1px;
+	}
+	.button-group {
+		margin: 12px 0 8px;
+	}
+	.btn {
+		font-family: $secondary-font;
+		font-size: 11px;
+		transition: all 0.2s;
+		@media #{$xs-only} {
+			display: block;
+			margin: 10px auto 0;
+		}
+		&.show-diff-btn {
+			background: $highlight;
+			border-bottom: 3px solid darken($highlight, 10%);
+			margin-right: 5px;
+			@media #{$xs-only} {
+				margin-right: auto;
+			} 
+			&:hover {
+				background: darken($highlight, 10%);
+				border-bottom-color: darken($highlight, 20%);
+			}
+		}
+		&.show-more-btn {
+			background: $secondary-highlight;
+			border-bottom: 3px solid darken($secondary-highlight, 10%);
+			&:hover {
+				background: darken($secondary-highlight, 10%);
+				border-bottom-color: darken($secondary-highlight, 20%);
+			}
+		}
 	}
 }
