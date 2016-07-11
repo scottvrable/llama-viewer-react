@@ -18,10 +18,14 @@
 		vertical-align: -1px;
 	}
 	.button-group {
+		font-family: $secondary-font;
 		margin: 12px 0 8px;
+		.dropdown-item {
+			font-size: 11px;
+			text-align: right;
+		}
 	}
 	.btn {
-		font-family: $secondary-font;
 		font-size: 11px;
 		transition: all 0.2s;
 		@media #{$xs-only} {

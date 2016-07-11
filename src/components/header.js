@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 
+import DiffButton from "./diff_button";
+
 class Header extends Component {
 	render() {
 		return (
@@ -12,8 +14,8 @@ class Header extends Component {
 									The Amazing <span className="featured-animal">Llama</span> Viewer!
 								</h1>
 								<div className="button-group text-xs-center pull-md-right">
-									<button className="btn show-diff-btn text-capitalize">Show me something different</button>
-									<button className="btn show-more-btn text-capitalize">Show me more llamas!</button>
+									<DiffButton />
+									<button type="button" className="btn show-more-btn text-capitalize">Show me more llamas!</button>
 								</div>
 							</div>
 						</div>
