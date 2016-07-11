@@ -1,0 +1,24 @@
+.diff-btn {
+	.btn {
+		background: $highlight;
+		border-bottom: 3px solid darken($highlight, 10%);
+		margin-right: 5px;
+		@media #{$xs-only} {
+			margin-right: auto;
+		} 
+		&:hover {
+			background: darken($highlight, 10%);
+			border-bottom-color: darken($highlight, 20%);
+		}
+	}
+	.dropdown-menu {
+		right: 5px;
+		@media #{$xs-only} {
+			right: 0;
+		}
+	}
+	.dropdown-item {
+		font-size: 11px;
+		text-align: right;
+	}
+}

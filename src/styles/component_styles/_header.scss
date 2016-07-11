@@ -20,10 +20,6 @@
 	.button-group {
 		font-family: $secondary-font;
 		margin: 12px 0 8px;
-		.dropdown-item {
-			font-size: 11px;
-			text-align: right;
-		}
 	}
 	.btn {
 		font-size: 11px;
@@ -31,18 +27,6 @@
 		@media #{$xs-only} {
 			display: block;
 			margin: 10px auto 0;
-		}
-		&.show-diff-btn {
-			background: $highlight;
-			border-bottom: 3px solid darken($highlight, 10%);
-			margin-right: 5px;
-			@media #{$xs-only} {
-				margin-right: auto;
-			} 
-			&:hover {
-				background: darken($highlight, 10%);
-				border-bottom-color: darken($highlight, 20%);
-			}
 		}
 		&.show-more-btn {
 			background: $secondary-highlight;

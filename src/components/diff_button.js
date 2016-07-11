@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import onClickOutside from "react-onclickoutside";
 
 class DiffButton extends Component {
 	constructor(props) {
@@ -10,6 +11,11 @@ class DiffButton extends Component {
 	handleClick() {
 		this.setState({
 			dropdown: !(this.state.dropdown)
+		});
+	}
+	handleClickOutside(evt) {
+		this.setState({
+			dropdown: false
 		});
 	}
 	dropdown() {
@@ -25,8 +31,8 @@ class DiffButton extends Component {
 	}
 	render() {
 		return (
-			<div className={"btn-group " + (this.state.dropdown ? 'open' : '')}>
-				<button onClick={this.handleClick.bind(this)} type="button" className="btn show-diff-btn text-capitalize dropdown-toggle">
+			<div className={"diff-btn btn-group " + (this.state.dropdown ? 'open' : '')} >
+				<button onClick={this.handleClick.bind(this)} type="button" className="btn text-capitalize dropdown-toggle">
 					Show me something different
 				</button>
 				{this.dropdown()}
@@ -35,4 +41,4 @@ class DiffButton extends Component {
 	}
 }
 
-export default DiffButton;
+export default onClickOutside(DiffButton);
