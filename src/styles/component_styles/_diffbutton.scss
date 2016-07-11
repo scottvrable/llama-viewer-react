@@ -19,6 +19,9 @@
 	}
 	.dropdown-item {
 		font-size: 11px;
-		text-align: right;
+		&:hover {
+			background: $secondary-highlight;
+			color: #fff;
+		}
 	}
 }
