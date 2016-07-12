@@ -12,16 +12,27 @@
 		}
 	}
 	.dropdown-menu {
+		border: none;
+		box-shadow: 0 0 4px rgba(0,0,0, 0.2);
 		right: 5px;
 		@media #{$xs-only} {
 			right: 0;
 		}
 	}
 	.dropdown-item {
-		font-size: 11px;
+		color: $primary-dark;
+		font-size: 12px;
+		transition: all 0.2s;
 		&:hover {
 			background: $secondary-highlight;
 			color: #fff;
 		}
+	}
+	.up-pointer {
+		border: solid 10px transparent;
+		border-bottom-color: #fff;
+		position: absolute;
+		right: 14px;
+		top: -18px;
 	}
 }

@@ -25,6 +25,7 @@ class DiffButton extends Component {
 					<a className="dropdown-item" href="#">Llamas</a>
 					<a className="dropdown-item" href="#">Pigs</a>
 					<a className="dropdown-item" href="#">Horses</a>
+					<span className="up-pointer"></span>
 				</div>
 			);
 		}
