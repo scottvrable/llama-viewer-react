@@ -5,6 +5,7 @@ import DiffButton from "./diff_button";
 
 class Header extends Component {
 	render() {
+		console.log(this.props);
 		return (
 			<header className="header row">
 				<div className="col-xs-12">
