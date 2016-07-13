@@ -1,18 +1,27 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 
 import AnimalArray from "../animal_array";
 import {setAnimal} from "../actions/";
 
 class Gallery extends Component {
-	constructor(props) {
-		super(props);
+	static contextTypes = {
+		router: PropTypes.object
+	};
+	componentWillMount() {
+		if(this.matchToAnimalArray() === false) {
+			this.context.router.push("/llama");
+		}
+	}
+	matchToAnimalArray() {
+		let matchFound = false;
 		AnimalArray.forEach(animalObj => {
 			if(animalObj.single === this.props.params.animal) {
 				this.props.setAnimal(animalObj);
-				return;
+				matchFound = true;
 			}
 		});
+		return matchFound;
 	}
 	render() {
 		return (
