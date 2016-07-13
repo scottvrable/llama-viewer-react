@@ -8,7 +8,7 @@ class Gallery extends Component {
 	constructor(props) {
 		super(props);
 		AnimalArray.forEach(animalObj => {
-			if(animalObj["single"] === this.props.params.animal) {
+			if(animalObj.single === this.props.params.animal) {
 				this.props.setAnimal(animalObj);
 				return;
 			}
