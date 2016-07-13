@@ -2,10 +2,10 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 import DiffButton from "./diff_button";
+import AnimalArray from "../animal_array";
 
 class Header extends Component {
 	render() {
-		console.log(this.props);
 		return (
 			<header className="header row">
 				<div className="col-xs-12">
@@ -28,10 +28,8 @@ class Header extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		animal: state.animal
-	};
+function mapStateToProps({animal}) {
+	return {animal};
 }
 
 export default connect(mapStateToProps)(Header);

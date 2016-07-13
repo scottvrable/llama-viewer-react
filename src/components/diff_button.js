@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import onClickOutside from "react-onclickoutside";
+import {Link} from "react-router";
+
+import AnimalArray from "../animal_array";
 
 class DiffButton extends Component {
 	constructor(props) {
@@ -22,9 +25,13 @@ class DiffButton extends Component {
 		if(this.state.dropdown) {
 			return (
 				<div className="dropdown-menu dropdown-menu-right">
-					<a className="dropdown-item" href="#">Llamas</a>
-					<a className="dropdown-item" href="#">Pigs</a>
-					<a className="dropdown-item" href="#">Horses</a>
+					{AnimalArray.map(animalObj => {
+						return (
+							<Link to={"/" + animalObj.single} key={animalObj.single} onClick={this.handleClick} className="dropdown-item text-capitalize" activeClassName="hide">
+								{animalObj.single}
+							</Link>
+						);
+					})}
 					<span className="up-pointer"></span>
 				</div>
 			);

@@ -1,13 +1,10 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
 import {connect} from "react-redux";
 
 import AnimalArray from "../animal_array";
 import {setAnimal} from "../actions/";
 
 class Gallery extends Component {
-	static contextTypes = {
-		router: PropTypes.object
-	};
 	constructor(props) {
 		super(props);
 		AnimalArray.forEach(animalObj => {
@@ -34,11 +31,8 @@ class Gallery extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	console.log("state: ", state);
-	return {
-		animal: state.animal
-	};
+function mapStateToProps({animal}) {
+	return {animal};
 }
 
 export default connect(mapStateToProps, {setAnimal})(Gallery);
