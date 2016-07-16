@@ -52,7 +52,7 @@ function mapStateToProps(state) {
 			plural: state.animal.plural,
 			page: state.animal.page
 		},
-		photos: state.animal
+		photos: state.animal.photos
 	};
 }
 
