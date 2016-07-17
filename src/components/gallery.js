@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 
 import AnimalArray from "../animal_array";
+import Thumbnail from "./thumbnail";
 import {setAnimal, fetchAnimal} from "../actions/";
 
 class Gallery extends Component {
@@ -24,6 +25,15 @@ class Gallery extends Component {
 		});
 		return matchFound;
 	}
+	renderThumbnails() {
+		if(this.props.photos) {
+			return this.props.photos.photo.map((thumb, index) => {
+				return (
+					<Thumbnail key={thumb.id} index={index} {...thumb} />
+				);
+			});
+		}
+	}
 	render() {
 		console.log("props: ", this.props);
 		return (
@@ -31,12 +41,7 @@ class Gallery extends Component {
 				<div className="col-xs-12">
 					<div className="container">
 						<div className="row">
-							<div className="col-xs-12">
-								{this.props.animal.single}
-								<div>
-									
-								</div>
-							</div>
+							{this.renderThumbnails()}
 						</div>
 					</div>
 				</div>
