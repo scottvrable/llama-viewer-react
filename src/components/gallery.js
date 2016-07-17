@@ -14,6 +14,13 @@ class Gallery extends Component {
 			this.context.router.push("/llama");
 		}
 	}
+	componentDidUpdate(prevProps) {
+		let oldParams = prevProps.params.animal
+    let newParams = this.props.params.animal
+    if (newParams !== oldParams) {
+      this.matchToAnimalArray();
+    }
+	}
 	matchToAnimalArray() {
 		let matchFound = false;
 		AnimalArray.forEach(animalObj => {
