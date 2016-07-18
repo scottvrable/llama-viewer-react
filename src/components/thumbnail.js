@@ -6,9 +6,9 @@ class Thumbnail extends Component {
 	}
 	render() {
 		return (
-			<div className="thumbnail col-lg-2 col-md-3 col-sm-4 col-xs-6">
+			<div className="text-xs-center thumbnail col-lg-2 col-md-3 col-sm-4 col-xs-6">
 				<img 
-					className="img-thumbnail center-block" 
+					className="img-thumbnail" 
 					src={this.buildUrl()} 
 					alt={this.props.title}
 				/>

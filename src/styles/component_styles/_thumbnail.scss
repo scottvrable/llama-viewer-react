@@ -2,12 +2,40 @@
 	cursor: pointer;
 	margin-bottom: 15px;
 	img {
-		border: solid 1px $primary-light;
+		border: solid 1px $mid-tone;
 		padding: 10px;
 	}
 	&:hover {
 		img {
 			transform: scale(1.2);
+		}
+	}
+	&.col-xs-6 {
+		@media #{$xs-only} {
+			&:nth-child(odd) {
+				clear: both;
+			}
+		}
+	}
+	&.col-sm-4 {
+		@media #{$sm-only} {
+			&:nth-child(3n + 1) {
+				clear: both;
+			}
+		}
+	}
+	&.col-md-3 {
+		@media #{$md-only} {
+			&:nth-child(4n + 1) {
+				clear: both;
+			}
+		}
+	}
+	&.col-lg-2 {
+		@media #{$lg-and-up} {
+			&:nth-child(6n + 1) {
+				clear: both;
+			}
 		}
 	}
 }

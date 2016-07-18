@@ -6,7 +6,7 @@ import Gallery from "./components/gallery";
 
 export default (
 	<Route path="/" component={App}>
-		<IndexRedirect to="/llama" />
-		<Route path="/:animal" component={Gallery} />
+		<IndexRedirect to="/llama/1" />
+		<Route path="/:animal/:page" component={Gallery} />
 	</Route>
 );

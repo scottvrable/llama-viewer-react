@@ -11,7 +11,7 @@ class Gallery extends Component {
 	};
 	componentWillMount() {
 		if(this.matchToAnimalArray() === false) {
-			this.context.router.push("/llama");
+			this.context.router.push("/llama/1");
 		}
 	}
 	componentDidUpdate(prevProps) {

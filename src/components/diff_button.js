@@ -27,7 +27,7 @@ class DiffButton extends Component {
 				<div className="dropdown-menu dropdown-menu-right">
 					{AnimalArray.map(animalObj => {
 						return (
-							<Link to={"/" + animalObj.single} key={animalObj.single} onClick={this.handleClick} className="dropdown-item text-capitalize" activeClassName="hide">
+							<Link to={"/" + animalObj.single + "/1"} key={animalObj.single} onClick={this.handleClick} className="dropdown-item text-capitalize" activeClassName="hide">
 								{animalObj.single}
 							</Link>
 						);
