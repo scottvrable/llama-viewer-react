@@ -10,9 +10,12 @@ class Gallery extends Component {
 		router: PropTypes.object
 	};
 	componentWillMount() {
+		const pageParam = Number(this.props.params.page);
 		if(this.matchToAnimalArray() === false) {
 			this.context.router.push("/llama/1");
-		}
+		} else if(isNaN(pageParam) || pageParam < 1 || pageParam > 40) {
+			this.context.router.push("/" + this.props.params.animal + "/1");
+		} 
 	}
 	componentDidUpdate(prevProps) {
 		let oldParams = prevProps.params.animal
