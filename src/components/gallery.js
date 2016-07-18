@@ -42,9 +42,8 @@ class Gallery extends Component {
 		}
 	}
 	render() {
-		console.log("props: ", this.props);
 		return (
-			<div className="gallery">
+			<div className="gallery clearfix">
 				<div className="col-xs-12">
 					<div className="container">
 						<div className="row">

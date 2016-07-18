@@ -1,0 +1,13 @@
+.thumbnail {
+	cursor: pointer;
+	margin-bottom: 15px;
+	img {
+		border: solid 1px $primary-light;
+		padding: 10px;
+	}
+	&:hover {
+		img {
+			transform: scale(1.2);
+		}
+	}
+}
