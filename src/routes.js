@@ -9,5 +9,6 @@ export default (
 		<IndexRedirect to="/llama/1" />
 		<Route path="/:animal/:page" component={Gallery} />
 		<Redirect from="/:animal" to="/:animal/1" />
+		<Redirect from="*" to="/llama/1" />
 	</Route>
 );
