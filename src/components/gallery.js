@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import AnimalArray from "../animal_array";
+import Loader from "./loader";
 import Thumbnail from "./thumbnail";
 import {setAnimal, fetchAnimal} from "../actions/";
 
@@ -10,6 +11,12 @@ class Gallery extends Component {
 	static contextTypes = {
 		router: PropTypes.object
 	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			imagesLoaded: 0
+		};
+	}
 	componentWillMount() {
 		const pageParam = Number(this.props.params.page);
 		if(this.matchToAnimalArray() === false) {
@@ -36,13 +43,25 @@ class Gallery extends Component {
 		});
 		return matchFound;
 	}
+	imagesLoaded() {
+		this.setState({
+			imagesLoaded: (++this.state.imagesLoaded)
+		});
+	}
 	renderThumbnails() {
 		if(this.props.photos) {
 			return this.props.photos.photo.map((thumb, index) => {
 				return (
-					<Thumbnail key={thumb.id} index={index} {...thumb} />
+					<Thumbnail key={thumb.id} index={index} {...thumb} imagesLoaded={this.imagesLoaded.bind(this)} />
 				);
 			});
+		}
+	}
+	renderLoader() {
+		if(this.state.imagesLoaded !== 24) {
+			return (
+				<Loader />
+			);
 		}
 	}
 	render() {
@@ -54,6 +73,7 @@ class Gallery extends Component {
 							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
 								{this.renderThumbnails()}
 							</ReactCSSTransitionGroup>
+							{this.renderLoader()}
 						</div>
 					</div>
 				</div>

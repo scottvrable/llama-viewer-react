@@ -1,0 +1,18 @@
+.loader {
+	background: rgba(0,0,0, 0.2);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	.spinner {
+		border-radius: 6px;
+		height: 80px;
+		left: 50%;
+		margin: -40px 0 0 -40px;
+		opacity: 0.8;
+		position: absolute;
+		top: 50%;
+		width: 80px;
+	}
+}

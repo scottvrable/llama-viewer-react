@@ -14,6 +14,7 @@ class Thumbnail extends Component {
 		this.setState({
 			loaded: true
 		});
+		this.props.imagesLoaded();
 	}
 	render() {
 		return (
