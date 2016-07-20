@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import AnimalArray from "../animal_array";
 import Thumbnail from "./thumbnail";
@@ -50,7 +51,9 @@ class Gallery extends Component {
 				<div className="col-xs-12">
 					<div className="container">
 						<div className="row">
-							{this.renderThumbnails()}
+							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
+								{this.renderThumbnails()}
+							</ReactCSSTransitionGroup>
 						</div>
 					</div>
 				</div>

@@ -1,3 +1,17 @@
 .gallery {
 	padding: 30px 0 15px;
+	.fade-enter {
+		opacity: 0;
+		transition: 500ms ease-in all;
+	}
+	.fade-enter-active {
+		opacity: 1;
+	}
+	.fade-leave {
+		opacity: 1;
+		transition: 200ms ease-out all;
+	}
+	.fade-leave-active {
+		opacity: 0;
+	}
 }
