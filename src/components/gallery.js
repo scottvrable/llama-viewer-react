@@ -26,21 +26,19 @@ class Gallery extends Component {
 		} 
 	}
 	componentDidUpdate(prevProps) {
-		let oldParams = prevProps.params.animal
-    let newParams = this.props.params.animal
+		let oldParams = prevProps.params
+    let newParams = this.props.params
     if (newParams !== oldParams) {
       this.matchToAnimalArray();
-      this.setState({
-      	imagesLoaded: 0
-      });
     }
 	}
 	matchToAnimalArray() {
 		let matchFound = false;
+		this.setState({imagesLoaded: 0});
 		AnimalArray.forEach(animalObj => {
 			if(animalObj.single === this.props.params.animal) {
 				this.props.setAnimal(animalObj);
-				this.props.fetchAnimal(animalObj);
+				this.props.fetchAnimal({...animalObj, page: this.props.params.page});
 				matchFound = true;
 			}
 		});
@@ -73,10 +71,10 @@ class Gallery extends Component {
 				<div className="col-xs-12">
 					<div className="container">
 						<div className="row">
-							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
+							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
 								{this.renderThumbnails()}
 							</ReactCSSTransitionGroup>
-							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
+							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
 								{this.renderLoader()}
 							</ReactCSSTransitionGroup>
 						</div>

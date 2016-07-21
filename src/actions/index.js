@@ -8,6 +8,7 @@ const ROOT_URL_2 = `&format=json&sort=relevance&content_type=1&per_page=24&safe_
 const ROOT_URL_3 = `&nojsoncallback=1`;
 
 export function fetchAnimal(animalObj) {
+	console.log("Inside fetchAnimal action: ", animalObj);
 	const url = `${ROOT_URL_1}${animalObj.single}${ROOT_URL_2}${animalObj.page}${ROOT_URL_3}`;
 	const request = axios.get(url);
 	return {

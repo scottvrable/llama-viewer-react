@@ -3,6 +3,7 @@
 	border-bottom: 3px solid darken($primary-dark, 10%);
 	color: #fff;
 	font-family: $display-font;
+	margin-bottom: 30px;
 	padding: 8px 0;
 	h1 {
 		font-size: 32px;
@@ -31,14 +32,6 @@
 		@media #{$xs-only} {
 			display: block;
 			margin: 10px auto 0;
-		}
-		&.show-more-btn {
-			background: $secondary-highlight;
-			border-bottom: 3px solid darken($secondary-highlight, 10%);
-			&:hover {
-				background: darken($secondary-highlight, 10%);
-				border-bottom-color: darken($secondary-highlight, 20%);
-			}
 		}
 	}
 }
