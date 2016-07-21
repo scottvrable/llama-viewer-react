@@ -10,6 +10,7 @@ class DiffButton extends Component {
 		this.state = {
 			dropdown: false
 		};
+		this.handleClick = this.handleClick.bind(this);
 	}
 	handleClick() {
 		this.setState({
@@ -40,7 +41,7 @@ class DiffButton extends Component {
 	render() {
 		return (
 			<div className={"diff-btn btn-group " + (this.state.dropdown ? 'open' : '')} >
-				<button onClick={this.handleClick.bind(this)} type="button" className="btn text-capitalize dropdown-toggle">
+				<button onClick={this.handleClick} type="button" className="btn text-capitalize dropdown-toggle">
 					Show me something different
 				</button>
 				{this.dropdown()}

@@ -30,6 +30,9 @@ class Gallery extends Component {
     let newParams = this.props.params.animal
     if (newParams !== oldParams) {
       this.matchToAnimalArray();
+      this.setState({
+      	imagesLoaded: 0
+      });
     }
 	}
 	matchToAnimalArray() {
@@ -73,7 +76,9 @@ class Gallery extends Component {
 							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
 								{this.renderThumbnails()}
 							</ReactCSSTransitionGroup>
-							{this.renderLoader()}
+							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
+								{this.renderLoader()}
+							</ReactCSSTransitionGroup>
 						</div>
 					</div>
 				</div>

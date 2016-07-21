@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import DiffButton from "./diff_button";
+import MoreButton from "./more_button";
 import AnimalArray from "../animal_array";
 
 const Header = (props) => {
@@ -16,7 +17,7 @@ const Header = (props) => {
 							</h1>
 							<div className="button-group text-xs-center pull-md-right">
 								<DiffButton />
-								<button type="button" className="btn show-more-btn text-capitalize">Show me more {props.animal.plural}!</button>
+								<MoreButton />
 							</div>
 						</div>
 					</div>
