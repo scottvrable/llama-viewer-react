@@ -5,7 +5,7 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import AnimalArray from "../animal_array";
 import Loader from "./loader";
 import Thumbnail from "./thumbnail";
-import {setAnimal, fetchAnimal} from "../actions/";
+import {setAnimal, fetchAnimal, clearImages} from "../actions/";
 
 class Gallery extends Component {
 	static contextTypes = {
@@ -29,6 +29,7 @@ class Gallery extends Component {
 		let oldParams = prevProps.params
     let newParams = this.props.params
     if (newParams !== oldParams) {
+    	this.props.clearImages({photos: []});
       this.matchToAnimalArray();
     }
 	}
@@ -50,7 +51,7 @@ class Gallery extends Component {
 		});
 	}
 	renderThumbnails() {
-		if(this.props.photos) {
+		if(this.props.photos.photo) {
 			return this.props.photos.photo.map((thumb, index) => {
 				return (
 					<Thumbnail key={thumb.id} index={index} {...thumb} imagesLoaded={this.imagesLoaded.bind(this)} />
@@ -63,6 +64,8 @@ class Gallery extends Component {
 			return (
 				<Loader />
 			);
+		} else {
+			console.log(this.props);
 		}
 	}
 	render() {
@@ -71,7 +74,7 @@ class Gallery extends Component {
 				<div className="col-xs-12">
 					<div className="container">
 						<div className="row">
-							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={0}>
 								{this.renderThumbnails()}
 							</ReactCSSTransitionGroup>
 							<ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
@@ -96,4 +99,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, {setAnimal, fetchAnimal})(Gallery);
+export default connect(mapStateToProps, {setAnimal, fetchAnimal, clearImages})(Gallery);
