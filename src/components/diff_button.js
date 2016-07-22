@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import onClickOutside from "react-onclickoutside";
 import {Link} from "react-router";
+import {connect} from "react-redux";
 
 import AnimalArray from "../animal_array";
 
@@ -22,13 +23,18 @@ class DiffButton extends Component {
 			dropdown: false
 		});
 	}
+	hideActiveAnimal(linkedAnimal) {
+		if(this.props.animal === linkedAnimal) {
+			return "hide";
+		}
+	}
 	dropdown() {
 		if(this.state.dropdown) {
 			return (
 				<div className="dropdown-menu dropdown-menu-right">
 					{AnimalArray.map(animalObj => {
 						return (
-							<Link to={"/" + animalObj.single + "/1"} key={animalObj.single} onClick={this.handleClick} className="dropdown-item text-capitalize" activeClassName="hide">
+							<Link to={"/" + animalObj.single + "/1"} key={animalObj.single} onClick={this.handleClick} className={"dropdown-item text-capitalize " + this.hideActiveAnimal(animalObj.single)}>
 								{animalObj.single}
 							</Link>
 						);
@@ -49,5 +55,10 @@ class DiffButton extends Component {
 		);
 	}
 }
+function mapStateToProps(state) {
+	return {
+		animal: state.animal.single
+	};
+}
 
-export default onClickOutside(DiffButton);
+export default connect(mapStateToProps)(onClickOutside(DiffButton));
