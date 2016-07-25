@@ -5,6 +5,7 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import AnimalArray from "../animal_array";
 import Loader from "./loader";
 import Thumbnail from "./thumbnail";
+import Lightbox from "./lightbox";
 import {setAnimal, fetchAnimal, clearImages} from "../actions/";
 
 class Gallery extends Component {
@@ -28,9 +29,16 @@ class Gallery extends Component {
 	componentDidUpdate(prevProps) {
 		let oldParams = prevProps.params
     let newParams = this.props.params
-    if (newParams !== oldParams) {
+    let oldFeature = prevProps.featuredPhoto;
+    let newFeature = this.props.featuredPhoto;
+    console.log("prevProps: ", prevProps);
+    console.log("newProps: ", this.props);
+    if(newParams !== oldParams) {
     	this.props.clearImages({photos: []});
       this.matchToAnimalArray();
+    }
+    if(newFeature !== oldFeature) {
+    	this.renderLightbox();
     }
 	}
 	matchToAnimalArray() {
@@ -64,8 +72,13 @@ class Gallery extends Component {
 			return (
 				<Loader />
 			);
-		} else {
-			console.log(this.props);
+		}
+	}
+	renderLightbox() {
+		if(this.props.featuredPhoto !== null) {
+			return (
+				<Lightbox />
+			);
 		}
 	}
 	render() {
@@ -76,6 +89,7 @@ class Gallery extends Component {
 						<div className="row">
 							<ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={200}>
 								{this.renderThumbnails()}
+								{this.renderLightbox()}
 								{this.renderLoader()}
 							</ReactCSSTransitionGroup>
 						</div>
@@ -93,7 +107,8 @@ function mapStateToProps(state) {
 			plural: state.animal.plural,
 			page: state.animal.page
 		},
-		photos: state.animal.photos
+		photos: state.animal.photos,
+		featuredPhoto: state.animal.featuredPhoto
 	};
 }
 

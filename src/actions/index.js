@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {SET_ANIMAL, FETCH_ANIMAL, CLEAR_IMAGES} from "./types";
+import {SET_ANIMAL, FETCH_ANIMAL, CLEAR_IMAGES, FEATURE_PHOTO} from "./types";
 
 const API_KEY = "9874b5ae39cf7e7517ccaa37d29c262a";
 const ROOT_URL_1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${API_KEY}&tags=`;
@@ -26,5 +26,11 @@ export function clearImages(photoObject) {
 	return {
 		type: CLEAR_IMAGES,
 		payload: photoObject
+	};
+}
+export function featurePhoto(index) {
+	return {
+		type: FEATURE_PHOTO,
+		payload: {featuredPhoto: index}
 	};
 }
