@@ -28,7 +28,7 @@ class Thumbnail extends Component {
 				<img 
 					onLoad={this.handleLoad.bind(this)}
 					onClick={this.handleClick.bind(this)}
-					className={"img-thumbnail " + (this.state.loaded ? "show" : "hide")} 
+					className={"img-thumbnail " + (this.state.loaded ? "visible" : "invisible")} 
 					src={this.buildUrl()} 
 					alt={this.props.title}
 				/>

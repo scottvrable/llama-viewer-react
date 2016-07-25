@@ -11,10 +11,14 @@ class Lightbox extends Component {
 			imageLoaded: false,
 			winWidth: null,
 			winHeight: null,
-			imageWidth: null,
 			imageHeight: null
 		};
-		handleScreenResize();
+		window.addEventListener("resize", this.handleWindowResize.bind(this));
+	}
+	componentWillMount() {
+		this.setState({
+			winHeight: window.innerHeight
+		});
 	}
 	renderLoader() {
 		if(!this.state.imageLoaded) {
@@ -33,15 +37,21 @@ class Lightbox extends Component {
 		const src = `https://farm${fp.farm}.staticflickr.com/${fp.server}/${fp.id}_${fp.secret}_c.jpg`;
 		const description = fp.title ? fp.title : "Untitled";
 		return (
-			<div className="featured-image">
+			<div className={"featured-image " + (this.state.imageLoaded ? "visible" : "invisible")}>
 				<div className="image-holder">
-					<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} />
+					<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} className={this.state.imageLoaded ? "visible" : "invisible"} style={{maxHeight: (this.state.winHeight - 20) + "px"}} />
 					<div className="description">
 						{description}
 					</div>
 				</div>
 			</div>
 		);
+	}
+	handleWindowResize() {
+		this.setState({
+			winWidth: window.innerWidth,
+			winHeight: window.innerHeight
+		});
 	}
 	render() {
 		return (
@@ -59,11 +69,6 @@ function mapStateToProps(state) {
 		photos: state.animal.photos,
 		featuredPhoto: state.animal.featuredPhoto
 	};
-}
-function handleScreenResize() {
-	window.addEventListener("resize", function() {
-		console.log(window.innerWidth);
-	});
 }
 
 export default connect(mapStateToProps)(Lightbox);
