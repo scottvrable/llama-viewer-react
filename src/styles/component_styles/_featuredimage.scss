@@ -1,0 +1,29 @@
+.featured-image {
+	text-align: center;
+	.image-holder {
+		background: #fff;
+		border-radius: 4px;
+		display: inline-block;
+		overflow: hidden;
+		padding: 10px;
+		position: relative;
+	}
+	img {
+		display: block;
+		margin: auto;
+		max-width: 100%;
+	}
+	.description {
+		background: rgba(255,255,255, 0.6);
+		bottom: 0;
+		left: 0;
+		overflow: hidden;
+		padding: 4px 16px 14px;
+		position: absolute;
+		right: 0;
+		text-align: left;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		z-index: 100;
+	}
+}

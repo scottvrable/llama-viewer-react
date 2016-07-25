@@ -31,8 +31,6 @@ class Gallery extends Component {
     let newParams = this.props.params
     let oldFeature = prevProps.featuredPhoto;
     let newFeature = this.props.featuredPhoto;
-    console.log("prevProps: ", prevProps);
-    console.log("newProps: ", this.props);
     if(newParams !== oldParams) {
     	this.props.clearImages({photos: []});
       this.matchToAnimalArray();
