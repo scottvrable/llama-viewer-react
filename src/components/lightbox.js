@@ -10,14 +10,14 @@ class Lightbox extends Component {
 		this.state = {
 			imageLoaded: false,
 			winWidth: null,
-			winHeight: null,
-			imageHeight: null
+			winHeight: null
 		};
 		window.addEventListener("resize", this.handleWindowResize.bind(this));
 	}
 	componentWillMount() {
 		this.setState({
-			winHeight: window.innerHeight
+			winHeight: window.innerHeight,
+			winWidth: window.innerWidth
 		});
 	}
 	renderLoader() {
@@ -38,10 +38,16 @@ class Lightbox extends Component {
 		const description = fp.title ? fp.title : "Untitled";
 		return (
 			<div className={"featured-image " + (this.state.imageLoaded ? "visible" : "invisible")}>
-				<div className="image-holder">
-					<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} className={this.state.imageLoaded ? "visible" : "invisible"} style={{maxHeight: (this.state.winHeight - 20) + "px"}} />
-					<div className="description">
-						{description}
+				<div className="fake-table" style={{height: this.state.winHeight}}>
+					<div className="fake-row">
+						<div className="fake-cell">
+							<div className="image-holder">
+								<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} className={this.state.imageLoaded ? "visible" : "invisible"} style={{maxHeight: (this.state.winHeight - 20) + "px", maxWidth: (this.state.innerWidth - 20) + "px"}} />
+								<div className="description">
+									{description}
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
