@@ -13,6 +13,7 @@ class Lightbox extends Component {
 			winWidth: null,
 			winHeight: null
 		};
+		this.handleWindowResize = this.handleWindowResize.bind(this);
 		window.addEventListener("resize", this.handleWindowResize);
 	}
 	componentDidMount() {
@@ -72,7 +73,7 @@ class Lightbox extends Component {
 		this.setState({
 			winWidth: window.innerWidth,
 			winHeight: window.innerHeight
-		}).bind(this);
+		});
 	}
 	render() {
 		return (
