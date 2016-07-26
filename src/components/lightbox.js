@@ -42,7 +42,7 @@ class Lightbox extends Component {
 					<div className="fake-row">
 						<div className="fake-cell">
 							<div className="image-holder">
-								<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} className={this.state.imageLoaded ? "visible" : "invisible"} style={{maxHeight: (this.state.winHeight - 20) + "px", maxWidth: (this.state.innerWidth - 20) + "px"}} />
+								<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} className={this.state.imageLoaded ? "visible" : "invisible"} style={{maxHeight: (this.state.winHeight - 40) + "px", maxWidth: (this.state.winWidth - 40) + "px"}} />
 								<div className="description">
 									{description}
 								</div>

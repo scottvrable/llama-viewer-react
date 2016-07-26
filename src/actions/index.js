@@ -24,7 +24,7 @@ export function setAnimal(animalObj) {
 export function clearImages(photoObject) {
 	return {
 		type: CLEAR_IMAGES,
-		payload: photoObject
+		payload: {photoObject, featuredPhoto: null}
 	};
 }
 export function featurePhoto(index) {
