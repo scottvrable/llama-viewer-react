@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import Loader from "./loader";
+import {featurePhoto} from "../actions/";
 
 class Lightbox extends Component {
 	constructor(props) {
@@ -12,13 +13,16 @@ class Lightbox extends Component {
 			winWidth: null,
 			winHeight: null
 		};
-		window.addEventListener("resize", this.handleWindowResize.bind(this));
+		window.addEventListener("resize", this.handleWindowResize);
 	}
-	componentWillMount() {
+	componentDidMount() {
 		this.setState({
 			winHeight: window.innerHeight,
 			winWidth: window.innerWidth
 		});
+	}
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.handleWindowResize);
 	}
 	renderLoader() {
 		if(!this.state.imageLoaded) {
@@ -27,29 +31,40 @@ class Lightbox extends Component {
 			);
 		}
 	}
+	renderFeaturedImage() {
+		if(this.props.featuredPhoto !== null) {
+			const fp = this.props.photos.photo[this.props.featuredPhoto];
+			const src = `https://farm${fp.farm}.staticflickr.com/${fp.server}/${fp.id}_${fp.secret}_c.jpg`;
+			const description = fp.title ? fp.title : "Untitled";
+			return (
+				<div className="image-holder">
+					<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} className={this.state.imageLoaded ? "visible" : "invisible"} style={{maxHeight: (this.state.winHeight - 40) + "px", maxWidth: (this.state.winWidth - 40) + "px"}} />
+					<div className="description">
+						{description}
+					</div>
+				</div>
+			);
+		}
+	}
 	handleLoad() {
 		this.setState({
 			imageLoaded: true
 		});
 	}
+	handleCloseClick() {
+		this.props.featurePhoto(null);
+	}
 	renderImage() {
-		const fp = this.props.photos.photo[this.props.featuredPhoto];
-		const src = `https://farm${fp.farm}.staticflickr.com/${fp.server}/${fp.id}_${fp.secret}_c.jpg`;
-		const description = fp.title ? fp.title : "Untitled";
 		return (
 			<div className={"featured-image " + (this.state.imageLoaded ? "visible" : "invisible")}>
 				<div className="fake-table" style={{height: this.state.winHeight}}>
 					<div className="fake-row">
 						<div className="fake-cell">
-							<div className="image-holder">
-								<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} className={this.state.imageLoaded ? "visible" : "invisible"} style={{maxHeight: (this.state.winHeight - 40) + "px", maxWidth: (this.state.winWidth - 40) + "px"}} />
-								<div className="description">
-									{description}
-								</div>
-							</div>
+							{this.renderFeaturedImage()}
 						</div>
 					</div>
 				</div>
+				<div onClick={this.handleCloseClick.bind(this)} className="lightbox-button close-button"></div>
 			</div>
 		);
 	}
@@ -57,7 +72,7 @@ class Lightbox extends Component {
 		this.setState({
 			winWidth: window.innerWidth,
 			winHeight: window.innerHeight
-		});
+		}).bind(this);
 	}
 	render() {
 		return (
@@ -77,4 +92,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(Lightbox);
+export default connect(mapStateToProps, {featurePhoto})(Lightbox);

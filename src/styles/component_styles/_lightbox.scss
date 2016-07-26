@@ -24,4 +24,25 @@
 		color: $text-dark;
 		font-family: $secondary-font;
 	}
+	.lightbox-button {
+		background-color: rgba(0,0,0, 0.4);
+		background-image: url(/img/button-sprite.png);
+		background-repeat: no-repeat;
+		background-size: 132px 44px;
+		border-radius: 4px;
+		cursor: pointer;
+		height: 44px;
+		opacity: 0.7;
+		position: fixed;
+		transition: all 0.2s;
+		width: 44px;
+		z-index: 1000;
+		&:hover {
+			opacity: 1.0;
+		}
+		&.close-button {
+			right: 10px;
+			top: 10px;
+		}
+	}
 }
