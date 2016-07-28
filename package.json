@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A simple image viewer of various farm animals, made with React and Redux, powered by Flickr",
   "main": "index.js",
-  "repository": "",
+  "repository": "https://github.com/scottvrable/llama-viewer-react.git",
   "scripts": {
-    "": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "postinstall": "webpack -p",
@@ -36,6 +36,7 @@
   "dependencies": {
     "axios": "^0.13.0",
     "babel-preset-stage-1": "^6.1.18",
+    "express": "^4.14.0",
     "lodash": "^3.10.1",
     "react": "^15.2.1",
     "react-addons-css-transition-group": "^15.2.1",
