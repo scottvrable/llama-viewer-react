@@ -6,6 +6,7 @@
 		margin-right: 5px;
 		@media #{$xs-only} {
 			margin-right: auto;
+			margin-top: 0;
 		} 
 		&:hover {
 			background: darken($highlight, 10%);
