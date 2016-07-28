@@ -57,6 +57,11 @@ class Lightbox extends Component {
 	handleCloseClick() {
 		this.props.featurePhoto(null);
 	}
+	handleClick(e) {
+		if(e.target.className === "fake-cell") {
+			this.handleCloseClick();
+		}
+	}
 	renderFeaturedImage() {
 		if(this.props.featuredPhoto !== null) {
 			const fp = this.props.photos.photo[this.props.featuredPhoto];
@@ -93,11 +98,6 @@ class Lightbox extends Component {
 			winWidth: window.innerWidth,
 			winHeight: window.innerHeight
 		});
-	}
-	handleClick(e) {
-		if(e.target.className === "fake-cell") {
-			this.handleCloseClick();
-		}
 	}
 	render() {
 		return (
