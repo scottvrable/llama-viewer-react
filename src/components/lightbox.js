@@ -66,6 +66,8 @@ class Lightbox extends Component {
 					</div>
 				</div>
 				<div onClick={this.handleCloseClick.bind(this)} className="lightbox-button close-button"></div>
+				<div className="lightbox-button prev-button"></div>
+				<div className="lightbox-button next-button"></div>
 			</div>
 		);
 	}

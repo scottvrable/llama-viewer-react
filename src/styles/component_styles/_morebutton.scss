@@ -1,11 +1,15 @@
 .more-btn {
-	background: $secondary-highlight;
-	border-bottom: 3px solid darken($secondary-highlight, 10%);
-	&:hover {
-		background: darken($secondary-highlight, 10%);
-		border-bottom-color: darken($secondary-highlight, 20%);
-	}
-	&:link, &:visited, &:hover, &:active {
-		color: #fff;
+	display: inline-block;
+	a {
+		background: $secondary-highlight;
+		border-bottom: 3px solid darken($secondary-highlight, 10%);
+		display: inline-block;
+		&:hover {
+			background: darken($secondary-highlight, 10%);
+			border-bottom-color: darken($secondary-highlight, 20%);
+		}
+		&:link, &:visited, &:hover, &:active {
+			color: #fff;
+		}
 	}
 }

@@ -24,9 +24,11 @@ class MoreButton extends Component {
 	}
 	render() {
 		return (
-			<Link to={"/" + this.props.animal.single + "/" + this.state.nextPageNum} className="btn more-btn text-capitalize">
-				Show me more {this.props.animal.plural}!
-			</Link>
+			<div className="more-btn">
+				<Link to={"/" + this.props.animal.single + "/" + this.state.nextPageNum} className="btn text-capitalize">
+					Show me more {this.props.animal.plural}!
+				</Link>
+			</div>
 		);
 	}
 }

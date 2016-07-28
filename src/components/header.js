@@ -17,6 +17,7 @@ const Header = (props) => {
 							</h1>
 							<div className="button-group text-xs-center pull-md-right">
 								<DiffButton />
+								<br className="hidden-sm-up" />
 								<MoreButton />
 							</div>
 						</div>

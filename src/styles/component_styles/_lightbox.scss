@@ -25,9 +25,7 @@
 		font-family: $secondary-font;
 	}
 	.lightbox-button {
-		background-color: rgba(0,0,0, 0.4);
-		background-image: url(/img/button-sprite.png);
-		background-repeat: no-repeat;
+		background: url(/img/button-sprite.png) 0 0 no-repeat rgba(0,0,0, 0.4);
 		background-size: 132px 44px;
 		border-radius: 4px;
 		cursor: pointer;
@@ -37,6 +35,20 @@
 		transition: all 0.2s;
 		width: 44px;
 		z-index: 1000;
+		&.prev-button,
+		&.next-button {
+			margin-top: -22px;
+			position: absolute;
+			top: 50%;
+		}
+		&.prev-button {
+			background-position: -44px 0;
+			left: 20px;
+		}
+		&.next-button {
+			background-position: -88px 0;
+			right: 20px;
+		}
 		&:hover {
 			opacity: 1.0;
 		}
