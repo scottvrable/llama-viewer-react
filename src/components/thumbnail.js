@@ -24,14 +24,16 @@ class Thumbnail extends Component {
 	}
 	render() {
 		return (
-			<div className={"text-xs-center thumbnail col-lg-2 col-md-3 col-sm-4 col-xs-6 " + (this.state.loaded ? "loaded" : "not-loaded")}>
-				<img 
-					onLoad={this.handleLoad.bind(this)}
-					onClick={this.handleClick.bind(this)}
-					className="img-thumbnail"
-					src={this.buildUrl()} 
-					alt={this.props.title}
-				/>
+			<div className="text-xs-center thumbnail col-lg-2 col-md-3 col-sm-4 col-xs-6">
+				<div className={this.state.loaded ? "loaded" : "not-loaded"}>
+					<img 
+						onLoad={this.handleLoad.bind(this)}
+						onClick={this.handleClick.bind(this)}
+						className="img-thumbnail"
+						src={this.buildUrl()} 
+						alt={this.props.title}
+					/>
+				</div>
 			</div>
 		);
 	}

@@ -89,9 +89,14 @@ class Lightbox extends Component {
 			winHeight: window.innerHeight
 		});
 	}
+	handleClick(e) {
+		if(e.target.className === "fake-cell") {
+			this.handleCloseClick();
+		}
+	}
 	render() {
 		return (
-			<div className="lightbox">
+			<div className="lightbox" onClick={this.handleClick.bind(this)}>
 				<ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={200}>
 					{this.renderLightbox()}
 				</ReactCSSTransitionGroup>
