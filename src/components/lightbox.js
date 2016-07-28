@@ -49,6 +49,11 @@ class Lightbox extends Component {
 		newPhotoIndex = (this.props.featuredPhoto === 0) ? 23 : (this.props.featuredPhoto - 1);
 		this.props.featurePhoto(newPhotoIndex);
 	}
+	handleNextClick() {
+		let newPhotoIndex;
+		newPhotoIndex = (this.props.featuredPhoto === 23) ? 0 : (this.props.featuredPhoto + 1);
+		this.props.featurePhoto(newPhotoIndex);
+	}
 	handleCloseClick() {
 		this.props.featurePhoto(null);
 	}
@@ -79,7 +84,7 @@ class Lightbox extends Component {
 				</div>
 				<div onClick={this.handleCloseClick.bind(this)} className="lightbox-button close-button"></div>
 				<div onClick={this.handlePrevClick.bind(this)} className="lightbox-button prev-button"></div>
-				<div className="lightbox-button next-button"></div>
+				<div onClick={this.handleNextClick.bind(this)} className="lightbox-button next-button"></div>
 			</div>
 		);
 	}
