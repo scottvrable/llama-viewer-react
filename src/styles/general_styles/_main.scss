@@ -26,3 +26,10 @@ body {
 .hide {
 	display: none;
 }
+.loaded {
+		opacity: 1;
+		transition: all 0.3s;
+}
+.not-loaded {
+	opacity: 0;
+}

@@ -85,8 +85,8 @@ class Gallery extends Component {
 				<div className="col-xs-12">
 					<div className="container">
 						<div className="row">
+							{this.renderThumbnails()}
 							<ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={200}>
-								{this.renderThumbnails()}
 								{this.renderLightbox()}
 								{this.renderLoader()}
 							</ReactCSSTransitionGroup>
