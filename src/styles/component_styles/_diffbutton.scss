@@ -2,6 +2,7 @@
 	.btn {
 		background: $highlight;
 		border-bottom: 3px solid darken($highlight, 10%);
+		color: #fff;
 		margin-right: 5px;
 		@media #{$xs-only} {
 			margin-right: auto;
