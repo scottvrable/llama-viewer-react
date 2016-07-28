@@ -22,6 +22,13 @@ class Lightbox extends Component {
 			winWidth: window.innerWidth
 		});
 	}
+	componentWillUpdate(prevProps) {
+		if(prevProps.featuredPhoto !== this.props.featuredPhoto) {
+			this.setState({
+				imageLoaded: false
+			});
+		}
+	}
 	componentWillUnmount() {
 		window.removeEventListener("resize", this.handleWindowResize);
 	}
@@ -31,6 +38,19 @@ class Lightbox extends Component {
 				<Loader />
 			);
 		}
+	}
+	handleLoad() {
+		this.setState({
+			imageLoaded: true
+		});
+	}
+	handlePrevClick() {
+		let newPhotoIndex;
+		newPhotoIndex = (this.props.featuredPhoto === 0) ? 23 : (this.props.featuredPhoto - 1);
+		this.props.featurePhoto(newPhotoIndex);
+	}
+	handleCloseClick() {
+		this.props.featurePhoto(null);
 	}
 	renderFeaturedImage() {
 		if(this.props.featuredPhoto !== null) {
@@ -47,17 +67,9 @@ class Lightbox extends Component {
 			);
 		}
 	}
-	handleLoad() {
-		this.setState({
-			imageLoaded: true
-		});
-	}
-	handleCloseClick() {
-		this.props.featurePhoto(null);
-	}
-	renderImage() {
+	renderLightbox() {
 		return (
-			<div className={"featured-image " + (this.state.imageLoaded ? "visible" : "invisible")}>
+			<div className={"featured-image " + (this.state.imageLoaded ? "loaded" : "not-loaded")}>
 				<div className="fake-table" style={{height: this.state.winHeight}}>
 					<div className="fake-row">
 						<div className="fake-cell">
@@ -66,7 +78,7 @@ class Lightbox extends Component {
 					</div>
 				</div>
 				<div onClick={this.handleCloseClick.bind(this)} className="lightbox-button close-button"></div>
-				<div className="lightbox-button prev-button"></div>
+				<div onClick={this.handlePrevClick.bind(this)} className="lightbox-button prev-button"></div>
 				<div className="lightbox-button next-button"></div>
 			</div>
 		);
@@ -81,9 +93,9 @@ class Lightbox extends Component {
 		return (
 			<div className="lightbox">
 				<ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={200}>
-					{this.renderImage()}
-					{this.renderLoader()}
+					{this.renderLightbox()}
 				</ReactCSSTransitionGroup>
+				{this.renderLoader()}
 			</div>
 		);
 	}

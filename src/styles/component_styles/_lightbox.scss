@@ -57,4 +57,11 @@
 			top: 10px;
 		}
 	}
+	.loaded {
+		opacity: 1;
+		transition: all 0.3s;
+	}
+	.not-loaded {
+		opacity: 0;
+	}
 }
