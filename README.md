@@ -31,7 +31,7 @@ Clone the repo locally, navigate to the directory and install the necessary depe
 	> npm install  
 ```
 
-Next, do the first build of the application by running Gulp:
+Next, start the local dev server:
 
 ```
 	> npm start
