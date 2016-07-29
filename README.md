@@ -1,4 +1,4 @@
-## [The Amazing Farm Animal Viewer (React/Redux)](hhttp://llama-viewer.herokuapp.com/)
+## [The Amazing Farm Animal Viewer (React/Redux)](http://llama-viewer.herokuapp.com/)
 ### By [Scott Vrable](http://scottvrable.com) / Made with [React.js](https://facebook.github.io/react/) and [Redux](http://redux.js.org/index.html) / Powered by [Flickr](http://flickr.com)
 
 It's random, but this mobile-first, responsive, single-page app pulls in pictures of various farm animals tagged on Flickr, specifically: **llamas**, **cows**, **chickens**, **horses**, **pigs**, **sheep**, **goats** and **donkeys**. Why farm animals? Because they're slightly more interesting than pictures of what people ordered at a restaurant.
