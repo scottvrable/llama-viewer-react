@@ -12,11 +12,21 @@ class Gallery extends Component {
 	static contextTypes = {
 		router: PropTypes.object
 	};
+	static timer;
 	constructor(props) {
 		super(props);
 		this.state = {
-			imagesLoaded: 0
+			imagesLoaded: 0,
+			timedOut: false
 		};
+	}
+	removeLoader() {
+		this.setState({
+			timedOut: true
+		});
+	}
+	startTimer() {
+		this.timer = window.setTimeout(this.removeLoader.bind(this), 10000);
 	}
 	componentWillMount() {
 		const pageParam = Number(this.props.params.page);
@@ -24,7 +34,8 @@ class Gallery extends Component {
 			this.context.router.push("/llama/1");
 		} else if(isNaN(pageParam) || pageParam < 1 || pageParam > 40) {
 			this.context.router.push("/" + this.props.params.animal + "/1");
-		} 
+		}
+		this.startTimer();
 	}
 	componentDidUpdate(prevProps) {
 		let oldParams = prevProps.params
@@ -41,7 +52,7 @@ class Gallery extends Component {
 	}
 	matchToAnimalArray() {
 		let matchFound = false;
-		this.setState({imagesLoaded: 0});
+		this.setState({imagesLoaded: 0, timedOut: false});
 		AnimalArray.forEach(animalObj => {
 			if(animalObj.single === this.props.params.animal) {
 				this.props.setAnimal(animalObj);
@@ -66,10 +77,12 @@ class Gallery extends Component {
 		}
 	}
 	renderLoader() {
-		if(this.state.imagesLoaded !== 24) {
+		if(this.state.imagesLoaded !== 24 && !this.state.timedOut) {
 			return (
 				<Loader />
 			);
+		} else {
+			window.clearTimeout(this.removeLoader.bind(this));
 		}
 	}
 	renderLightbox() {
