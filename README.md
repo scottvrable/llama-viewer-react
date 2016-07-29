@@ -37,6 +37,8 @@ Next, start the local dev server:
 	> npm start
 ```
 
+**It is HIGHLY suggested that you use `npm` version 3.0.0 or higher to avoid dependency conflicts.**
+
 #### Final Notes
 
 This application was built with React / Redux / JSX and Bootstrap 4 / Sass and React Router. I used Webpack for preprocessing, including CSS prefix appending, Sass compiling, concatenation and minification. No jQuery was used.
