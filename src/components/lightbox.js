@@ -69,7 +69,7 @@ class Lightbox extends Component {
 			const description = fp.title ? fp.title : "Untitled";
 			return (
 				<div className="image-holder">
-					<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} className={this.state.imageLoaded ? "visible" : "invisible"} style={{maxHeight: (this.state.winHeight - 40) + "px", maxWidth: (this.state.winWidth - 40) + "px"}} />
+					<img onLoad={this.handleLoad.bind(this)} src={src} alt={description} style={{maxHeight: (this.state.winHeight - 40) + "px", maxWidth: (this.state.winWidth - 40) + "px"}} />
 					<div className="description">
 						{description}
 					</div>
@@ -79,17 +79,19 @@ class Lightbox extends Component {
 	}
 	renderLightbox() {
 		return (
-			<div className={"featured-image " + (this.state.imageLoaded ? "loaded" : "not-loaded")}>
-				<div className="fake-table" style={{height: this.state.winHeight}}>
-					<div className="fake-row">
-						<div className="fake-cell">
-							{this.renderFeaturedImage()}
+			<div className={"featured-image " + (this.state.imageLoaded ? "visible" : "invisible")}>
+				<div className={(this.state.imageLoaded ? "loaded" : "not-loaded")}>
+					<div className="fake-table" style={{height: this.state.winHeight}}>
+						<div className="fake-row">
+							<div className="fake-cell">
+								{this.renderFeaturedImage()}
+							</div>
 						</div>
 					</div>
+					<div onClick={this.handleCloseClick.bind(this)} className="lightbox-button close-button"></div>
+					<div onClick={this.handlePrevClick.bind(this)} className="lightbox-button prev-button"></div>
+					<div onClick={this.handleNextClick.bind(this)} className="lightbox-button next-button"></div>
 				</div>
-				<div onClick={this.handleCloseClick.bind(this)} className="lightbox-button close-button"></div>
-				<div onClick={this.handlePrevClick.bind(this)} className="lightbox-button prev-button"></div>
-				<div onClick={this.handleNextClick.bind(this)} className="lightbox-button next-button"></div>
 			</div>
 		);
 	}
