@@ -46,13 +46,33 @@ class Lightbox extends Component {
 	}
 	handlePrevClick() {
 		let newPhotoIndex;
-		newPhotoIndex = (this.props.featuredPhoto === 0) ? 23 : (this.props.featuredPhoto - 1);
-		this.props.featurePhoto(newPhotoIndex);
+		let counter = 1;
+		function findPrevPhoto(counter) {
+			newPhotoIndex = (this.props.featuredPhoto === 0) ? (24 - counter) : (this.props.featuredPhoto - counter);
+			if(this.props.photos.photo[newPhotoIndex]) {
+				this.props.featurePhoto(newPhotoIndex);
+			} else {
+				++counter;
+				findPrevPhoto(counter);
+			}
+		}
+		findPrevPhoto = findPrevPhoto.bind(this);
+		findPrevPhoto(counter);
 	}
 	handleNextClick() {
 		let newPhotoIndex;
-		newPhotoIndex = (this.props.featuredPhoto === 23) ? 0 : (this.props.featuredPhoto + 1);
-		this.props.featurePhoto(newPhotoIndex);
+		let counter = 1;
+		function findNextPhoto(counter) {
+			newPhotoIndex = (this.props.featuredPhoto === (24 - counter)) ? 0 : (this.props.featuredPhoto + counter);
+			if(this.props.photos.photo[newPhotoIndex]) {
+				this.props.featurePhoto(newPhotoIndex);
+			} else {
+				++counter;
+				findNextPhoto(counter);
+			}
+		}
+		findNextPhoto = findNextPhoto.bind(this);
+		findNextPhoto(counter);
 	}
 	handleCloseClick() {
 		this.props.featurePhoto(null);
