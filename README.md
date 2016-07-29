@@ -34,7 +34,7 @@ Clone the repo locally, navigate to the directory and install the necessary depe
 Next, start the local dev server:
 
 ```
-	> npm start
+	> npm run dev
 ```
 
 **It is HIGHLY suggested that you use `npm` version 3.0.0 or higher to avoid dependency conflicts.**
