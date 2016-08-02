@@ -8,6 +8,8 @@ import Thumbnail from "./thumbnail";
 import Lightbox from "./lightbox";
 import {setAnimal, fetchAnimal, clearImages} from "../actions/";
 
+var timer;
+
 class Gallery extends Component {
 	static timer;
 	static contextTypes = {
@@ -19,6 +21,7 @@ class Gallery extends Component {
 			imagesLoaded: 0,
 			timedOut: false
 		};
+		this.removeLoader = this.removeLoader.bind(this);
 	}
 	componentWillMount() {
 		const pageParam = Number(this.props.params.page);
@@ -41,6 +44,7 @@ class Gallery extends Component {
     if(newFeature !== oldFeature) {
     	this.renderLightbox();
     }
+    this.startTimer();
 	}
 	matchToAnimalArray() {
 		let matchFound = false;
@@ -65,7 +69,7 @@ class Gallery extends Component {
 		});
 	}
 	startTimer() {
-		this.timer = window.setTimeout(this.removeLoader.bind(this), 10000);
+		timer = window.setTimeout(this.removeLoader, 10000);
 	}
 	renderThumbnails() {
 		if(this.props.photos.photo) {
@@ -82,7 +86,7 @@ class Gallery extends Component {
 				<Loader />
 			);
 		} else {
-			window.clearTimeout(this.removeLoader.bind(this));
+			window.clearTimeout(timer);
 		}
 	}
 	renderLightbox() {

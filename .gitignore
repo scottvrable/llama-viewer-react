@@ -4,6 +4,8 @@ bundle.js.map
 style.css.map
 npm-debug.log
 style.css
+id_rsa
+id_rsa.pub
 
 # IntelliJ
 *.iml
