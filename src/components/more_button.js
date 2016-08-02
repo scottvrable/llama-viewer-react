@@ -9,6 +9,11 @@ class MoreButton extends Component {
 			nextPageNum: this.pickRandomPage()
 		};
 	}
+	componentWillReceiveProps() {
+		this.setState({
+			nextPageNum: this.pickRandomPage()
+		});
+	}
 	pickRandomPage() {
 		let nextNum;
 		nextNum = Math.ceil(40 * Math.random());
@@ -16,11 +21,6 @@ class MoreButton extends Component {
 			this.pickRandomPage();
 		}
 		return nextNum;
-	}
-	componentWillReceiveProps() {
-		this.setState({
-			nextPageNum: this.pickRandomPage()
-		});
 	}
 	render() {
 		return (

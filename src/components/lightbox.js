@@ -32,6 +32,12 @@ class Lightbox extends Component {
 	componentWillUnmount() {
 		window.removeEventListener("resize", this.handleWindowResize);
 	}
+	handleWindowResize() {
+		this.setState({
+			winWidth: window.innerWidth,
+			winHeight: window.innerHeight
+		});
+	}
 	renderLoader() {
 		if(!this.state.imageLoaded) {
 			return (
@@ -115,12 +121,6 @@ class Lightbox extends Component {
 			</div>
 		);
 	}
-	handleWindowResize() {
-		this.setState({
-			winWidth: window.innerWidth,
-			winHeight: window.innerHeight
-		});
-	}
 	render() {
 		return (
 			<div className="lightbox" onClick={this.handleClick.bind(this)}>
@@ -132,6 +132,7 @@ class Lightbox extends Component {
 		);
 	}
 }
+
 function mapStateToProps(state) {
 	return {
 		photos: state.animal.photos,

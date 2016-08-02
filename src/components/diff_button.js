@@ -55,6 +55,7 @@ class DiffButton extends Component {
 		);
 	}
 }
+
 function mapStateToProps(state) {
 	return {
 		animal: state.animal.single

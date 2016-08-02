@@ -9,24 +9,16 @@ import Lightbox from "./lightbox";
 import {setAnimal, fetchAnimal, clearImages} from "../actions/";
 
 class Gallery extends Component {
+	static timer;
 	static contextTypes = {
 		router: PropTypes.object
 	};
-	static timer;
 	constructor(props) {
 		super(props);
 		this.state = {
 			imagesLoaded: 0,
 			timedOut: false
 		};
-	}
-	removeLoader() {
-		this.setState({
-			timedOut: true
-		});
-	}
-	startTimer() {
-		this.timer = window.setTimeout(this.removeLoader.bind(this), 10000);
 	}
 	componentWillMount() {
 		const pageParam = Number(this.props.params.page);
@@ -66,6 +58,14 @@ class Gallery extends Component {
 		this.setState({
 			imagesLoaded: (++this.state.imagesLoaded)
 		});
+	}
+	removeLoader() {
+		this.setState({
+			timedOut: true
+		});
+	}
+	startTimer() {
+		this.timer = window.setTimeout(this.removeLoader.bind(this), 10000);
 	}
 	renderThumbnails() {
 		if(this.props.photos.photo) {
