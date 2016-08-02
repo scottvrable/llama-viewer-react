@@ -44,6 +44,7 @@ class Gallery extends Component {
     if(newFeature !== oldFeature) {
     	this.renderLightbox();
     }
+    this.clearTimer();
     this.startTimer();
 	}
 	matchToAnimalArray() {
@@ -71,6 +72,9 @@ class Gallery extends Component {
 	startTimer() {
 		timer = window.setTimeout(this.removeLoader, 10000);
 	}
+	clearTimer() {
+		window.clearTimeout(timer);
+	}
 	renderThumbnails() {
 		if(this.props.photos.photo) {
 			return this.props.photos.photo.map((thumb, index) => {
@@ -86,7 +90,7 @@ class Gallery extends Component {
 				<Loader />
 			);
 		} else {
-			window.clearTimeout(timer);
+			this.clearTimer();
 		}
 	}
 	renderLightbox() {
