@@ -6,7 +6,7 @@ class MoreButton extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			nextPageNum: this.pickRandomPage()
+			nextPageNum: null
 		};
 	}
 	componentWillReceiveProps() {
@@ -16,9 +16,14 @@ class MoreButton extends Component {
 	}
 	pickRandomPage() {
 		let nextNum;
-		nextNum = Math.ceil(40 * Math.random());
+		const max = 40;
+		nextNum = Math.ceil(max * Math.random());
 		if(nextNum === Number(this.props.page)) {
-			this.pickRandomPage();
+			if(nextNum < max) {
+				++nextNum;
+			} else {
+				nextNum = 1;
+			}
 		}
 		return nextNum;
 	}
