@@ -52,7 +52,7 @@ class Gallery extends Component {
 		this.setState({imagesLoaded: 0, timedOut: false});
 		AnimalArray.forEach(animalObj => {
 			if(animalObj.single === this.props.params.animal) {
-				this.props.setAnimal(animalObj);
+				this.props.setAnimal({...animalObj, page: this.props.params.page});
 				this.props.fetchAnimal({...animalObj, page: this.props.params.page});
 				matchFound = true;
 			}
