@@ -40,7 +40,9 @@ class Gallery extends Component {
     if(newParams !== oldParams) {
     	this.props.clearImages({photos: []});
       this.matchToAnimalArray();
-      this.clearTimer();
+      if(!this.state.timerCleared) {
+      	this.clearTimer();
+      }
     	this.startTimer();
     }
     if(newFeature !== oldFeature) {
