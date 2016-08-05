@@ -44,21 +44,18 @@ class Lightbox extends Component {
 		this.clearTimer();
 	}
 	startTimer() {
-		console.log("starting timer");
 		this.setState({
 			timerCleared: false
 		});
 		lightboxTimer = window.setTimeout(this.removeLoader, 10000);
 	}
 	clearTimer() {
-		console.log("clearing timer");
 		this.setState({
 			timerCleared: true
 		});
 		window.clearTimeout(lightboxTimer);
 	}
 	removeLoader() {
-		console.log("TIMEDOUT");
 		this.setState({
 			timedOut: true
 		});

@@ -1,0 +1,9 @@
+.display-warning {
+	p {
+		font-family: $secondary-font;
+		font-size: 14px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import AnimalArray from "../animal_array";
+import Warning from "./warning";
 import Loader from "./loader";
 import Thumbnail from "./thumbnail";
 import Lightbox from "./lightbox";
@@ -96,6 +97,17 @@ class Gallery extends Component {
 			featuredPhotoTimedOut: false
 		});
 	}
+	renderWarning() {
+		if(this.state.featuredPhotoTimedOut) {
+			return (
+				<div className="row">
+					<div className="col-xs-12">
+						<Warning />
+					</div>
+				</div>
+			);
+		}
+	}
 	renderThumbnails() {
 		if(this.props.photos.photo) {
 			return this.props.photos.photo.map((thumb, index) => {
@@ -128,6 +140,7 @@ class Gallery extends Component {
 			<div className="gallery clearfix">
 				<div className="col-xs-12">
 					<div className="container">
+						{this.renderWarning()}
 						<div className="row">
 							{this.renderThumbnails()}
 							<ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={200}>
