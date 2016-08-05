@@ -11,7 +11,6 @@ import {setAnimal, fetchAnimal, clearImages} from "../actions/";
 var timer;
 
 class Gallery extends Component {
-	static timer;
 	static contextTypes = {
 		router: PropTypes.object
 	};
@@ -19,7 +18,8 @@ class Gallery extends Component {
 		super(props);
 		this.state = {
 			imagesLoaded: 0,
-			timedOut: false
+			timedOut: false,
+			timerCleared: false
 		};
 		this.removeLoader = this.removeLoader.bind(this);
 	}
@@ -40,12 +40,12 @@ class Gallery extends Component {
     if(newParams !== oldParams) {
     	this.props.clearImages({photos: []});
       this.matchToAnimalArray();
+      this.clearTimer();
+    	this.startTimer();
     }
     if(newFeature !== oldFeature) {
     	this.renderLightbox();
     }
-    this.clearTimer();
-    this.startTimer();
 	}
 	matchToAnimalArray() {
 		let matchFound = false;
@@ -70,9 +70,15 @@ class Gallery extends Component {
 		});
 	}
 	startTimer() {
+		this.setState({
+			timerCleared: false
+		});
 		timer = window.setTimeout(this.removeLoader, 10000);
 	}
 	clearTimer() {
+		this.setState({
+			timerCleared: true
+		});
 		window.clearTimeout(timer);
 	}
 	renderThumbnails() {
@@ -85,12 +91,14 @@ class Gallery extends Component {
 		}
 	}
 	renderLoader() {
-		if(this.state.imagesLoaded !== 24 && !this.state.timedOut) {
-			return (
-				<Loader />
-			);
-		} else {
-			this.clearTimer();
+		if(this.state.imagesLoaded !== 24) {
+			if(!this.state.timedOut) {
+				return (
+					<Loader />
+				);
+			} else if(!this.state.timerCleared) {
+				this.clearTimer();
+			}
 		}
 	}
 	renderLightbox() {
