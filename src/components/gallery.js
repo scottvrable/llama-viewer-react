@@ -19,9 +19,12 @@ class Gallery extends Component {
 		this.state = {
 			imagesLoaded: 0,
 			timedOut: false,
-			timerCleared: false
+			timerCleared: false,
+			featuredPhotoTimedOut: false
 		};
 		this.removeLoader = this.removeLoader.bind(this);
+		this.displayLoadWarning = this.displayLoadWarning.bind(this);
+		this.clearLoadWarning = this.clearLoadWarning.bind(this);
 	}
 	componentWillMount() {
 		const pageParam = Number(this.props.params.page);
@@ -83,11 +86,21 @@ class Gallery extends Component {
 		});
 		window.clearTimeout(timer);
 	}
+	displayLoadWarning() {
+		this.setState({
+			featuredPhotoTimedOut: true
+		});
+	}
+	clearLoadWarning() {
+		this.setState({
+			featuredPhotoTimedOut: false
+		});
+	}
 	renderThumbnails() {
 		if(this.props.photos.photo) {
 			return this.props.photos.photo.map((thumb, index) => {
 				return (
-					<Thumbnail key={thumb.id} index={index} {...thumb} imagesLoaded={this.imagesLoaded.bind(this)} />
+					<Thumbnail key={thumb.id} index={index} {...thumb} imagesLoaded={this.imagesLoaded.bind(this)} clearLoadWarning={this.clearLoadWarning} />
 				);
 			});
 		}
@@ -104,9 +117,9 @@ class Gallery extends Component {
 		}
 	}
 	renderLightbox() {
-		if(this.props.featuredPhoto !== null) {
+		if(this.props.featuredPhoto !== null && !this.state.featuredPhotoTimedOut) {
 			return (
-				<Lightbox />
+				<Lightbox displayLoadWarning={this.displayLoadWarning} />
 			);
 		}
 	}

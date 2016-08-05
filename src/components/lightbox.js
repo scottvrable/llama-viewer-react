@@ -48,7 +48,7 @@ class Lightbox extends Component {
 		this.setState({
 			timerCleared: false
 		});
-		lightboxTimer = window.setTimeout(this.removeLoader, 1000);
+		lightboxTimer = window.setTimeout(this.removeLoader, 10000);
 	}
 	clearTimer() {
 		console.log("clearing timer");
@@ -62,6 +62,7 @@ class Lightbox extends Component {
 		this.setState({
 			timedOut: true
 		});
+		this.props.displayLoadWarning();
 	}
 	handleWindowResize() {
 		this.setState({
