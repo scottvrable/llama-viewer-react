@@ -20,6 +20,7 @@ class Thumbnail extends Component {
 		this.props.imagesLoaded();
 	}
 	handleClick() {
+		this.props.clearLoadWarning();
 		this.props.featurePhoto(this.props.index);
 	}
 	render() {

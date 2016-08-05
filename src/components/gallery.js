@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import AnimalArray from "../animal_array";
+import Warning from "./warning";
 import Loader from "./loader";
 import Thumbnail from "./thumbnail";
 import Lightbox from "./lightbox";
@@ -19,9 +20,12 @@ class Gallery extends Component {
 		this.state = {
 			imagesLoaded: 0,
 			timedOut: false,
-			timerCleared: false
+			timerCleared: false,
+			featuredPhotoTimedOut: false
 		};
 		this.removeLoader = this.removeLoader.bind(this);
+		this.displayLoadWarning = this.displayLoadWarning.bind(this);
+		this.clearLoadWarning = this.clearLoadWarning.bind(this);
 	}
 	componentWillMount() {
 		const pageParam = Number(this.props.params.page);
@@ -40,7 +44,9 @@ class Gallery extends Component {
     if(newParams !== oldParams) {
     	this.props.clearImages({photos: []});
       this.matchToAnimalArray();
-      this.clearTimer();
+      if(!this.state.timerCleared) {
+      	this.clearTimer();
+      }
     	this.startTimer();
     }
     if(newFeature !== oldFeature) {
@@ -81,11 +87,32 @@ class Gallery extends Component {
 		});
 		window.clearTimeout(timer);
 	}
+	displayLoadWarning() {
+		this.setState({
+			featuredPhotoTimedOut: true
+		});
+	}
+	clearLoadWarning() {
+		this.setState({
+			featuredPhotoTimedOut: false
+		});
+	}
+	renderWarning() {
+		if(this.state.featuredPhotoTimedOut) {
+			return (
+				<div className="row">
+					<div className="col-xs-12">
+						<Warning />
+					</div>
+				</div>
+			);
+		}
+	}
 	renderThumbnails() {
 		if(this.props.photos.photo) {
 			return this.props.photos.photo.map((thumb, index) => {
 				return (
-					<Thumbnail key={thumb.id} index={index} {...thumb} imagesLoaded={this.imagesLoaded.bind(this)} />
+					<Thumbnail key={thumb.id} index={index} {...thumb} imagesLoaded={this.imagesLoaded.bind(this)} clearLoadWarning={this.clearLoadWarning} />
 				);
 			});
 		}
@@ -102,9 +129,9 @@ class Gallery extends Component {
 		}
 	}
 	renderLightbox() {
-		if(this.props.featuredPhoto !== null) {
+		if(this.props.featuredPhoto !== null && !this.state.featuredPhotoTimedOut) {
 			return (
-				<Lightbox />
+				<Lightbox displayLoadWarning={this.displayLoadWarning} />
 			);
 		}
 	}
@@ -113,6 +140,7 @@ class Gallery extends Component {
 			<div className="gallery clearfix">
 				<div className="col-xs-12">
 					<div className="container">
+						{this.renderWarning()}
 						<div className="row">
 							{this.renderThumbnails()}
 							<ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={200}>

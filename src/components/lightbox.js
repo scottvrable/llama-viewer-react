@@ -5,15 +5,20 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import Loader from "./loader";
 import {featurePhoto} from "../actions/";
 
+var lightboxTimer;
+
 class Lightbox extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			imageLoaded: false,
 			winWidth: null,
-			winHeight: null
+			winHeight: null,
+			timedOut: false,
+			timerCleared: false
 		};
 		this.handleWindowResize = this.handleWindowResize.bind(this);
+		this.removeLoader = this.removeLoader.bind(this);
 		window.addEventListener("resize", this.handleWindowResize);
 	}
 	componentDidMount() {
@@ -21,16 +26,40 @@ class Lightbox extends Component {
 			winHeight: window.innerHeight,
 			winWidth: window.innerWidth
 		});
+		this.startTimer();
 	}
-	componentWillUpdate(prevProps) {
+	componentDidUpdate(prevProps) {
 		if(prevProps.featuredPhoto !== this.props.featuredPhoto) {
 			this.setState({
 				imageLoaded: false
 			});
+			if(!this.state.timerCleared) {
+				this.clearTimer();
+			}
+			this.startTimer();
 		}
 	}
 	componentWillUnmount() {
 		window.removeEventListener("resize", this.handleWindowResize);
+		this.clearTimer();
+	}
+	startTimer() {
+		this.setState({
+			timerCleared: false
+		});
+		lightboxTimer = window.setTimeout(this.removeLoader, 10000);
+	}
+	clearTimer() {
+		this.setState({
+			timerCleared: true
+		});
+		window.clearTimeout(lightboxTimer);
+	}
+	removeLoader() {
+		this.setState({
+			timedOut: true
+		});
+		this.props.displayLoadWarning();
 	}
 	handleWindowResize() {
 		this.setState({
@@ -40,9 +69,13 @@ class Lightbox extends Component {
 	}
 	renderLoader() {
 		if(!this.state.imageLoaded) {
-			return (
-				<Loader />
-			);
+			if(!this.state.timedOut) {
+				return (
+					<Loader />
+				);
+			}
+		} else if(!this.state.timerCleared) {
+			this.clearTimer();
 		}
 	}
 	handleLoad() {
